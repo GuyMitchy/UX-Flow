@@ -10,6 +10,7 @@
         #chart-container { margin-top: 5vh; height: 60vh; width: 95%; margin-left: auto; margin-right: auto; }
         .back-button { display: none; margin-bottom: 10vh; padding: 10px 20px; background-color: #3498db; color: white; border: none; cursor: pointer; }
         .info-panel { display: none; margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 5px; }
+        .info-panel h3 { margin-top: 0; color: #2c3e50; }
     </style>
 </head>
 <body>
@@ -34,13 +35,13 @@
 
         const mainChart = `
             flowchart LR
-                A[Start: Project Initiation] --> B[Strategy Plane]
-                B --> C[Scope Plane]
-                C --> D[Structure Plane]
-                D --> E[Skeleton Plane]
-                E --> F[Surface Plane]
-                F --> G[Final Website]
-                G --> H[User Testing]
+                A(Start: Project Initiation) --> B(Strategy Plane)
+                B --> C(Scope Plane)
+                C --> D(Structure Plane)
+                D --> E(Skeleton Plane)
+                E --> F(Surface Plane)
+                F --> G(Product 1.0)
+                G --> H(User Testing)
                 H -->|Iterate| B
 
                 click B call clickPlane("B") "Strategy Plane: Define project objectives and user needs"
@@ -48,6 +49,7 @@
                 click D call clickPlane("D") "Structure Plane: Develop information architecture and interaction design"
                 click E call clickPlane("E") "Skeleton Plane: Create wireframes, navigation design, and interface layout"
                 click F call clickPlane("F") "Surface Plane: Design visual elements and create style guide"
+                
                 click H call clickPlane("H") "User Testing: Evaluate the final product with real users"
 
                 style A fill:#f9f,stroke:#333,stroke-width:2px
@@ -57,139 +59,158 @@
         const planeCharts = {
             B: `
             flowchart TD
-                A[Strategy Plane] --> B[User Needs]
-                A --> C[Business Objectives]
-                B --> D[User Research]
-                D --> D1[Surveys]
-                D --> D2[Interviews]
-                D --> D3[Analytics Review]
-                B --> E[Personas]
-                E --> E1[Demographic Info]
-                E --> E2[Goals and Pain Points]
-                E --> E3[Behaviors]
-                C --> F[Project Goals]
-                F --> F1[Define KPIs]
-                F --> F2[Set Timelines]
-                C --> G[Success Metrics]
-                G --> G1[Conversion Rates]
-                G --> G2[User Engagement]
-                G --> G3[Customer Satisfaction]
+                A(Strategy Plane) --> B(User Needs)
+                A --> C(Business Objectives)
+                B --> D(User Research)
+                D --> D1(Surveys)
+                D --> D2(Interviews)
+                D --> D3(Analytics Review)
+                B --> E(Personas)
+                E --> E1(Demographic Info)
+                E --> E2(Goals and Pain Points)
+                E --> E3(Behaviors)
+                C --> F(Project Goals)
+                F --> F1(Define KPIs)
+                F --> F2(Set Timelines)
+                C --> G(Success Metrics)
+                G --> G1(Conversion Rates)
+                G --> G2(User Engagement)
+                G --> G3(Customer Satisfaction)
+                A --> H(Content Considerations)
+                A --> I(Technology Appropriateness)
+                A --> J(Competitive Analysis)
+                A --> K(Value Proposition)
 
-                click B call showInfo("Identify and analyze the needs of your target users")
-                click C call showInfo("Define clear business goals and objectives for the project")
-                click D call showInfo("Gather data about users through various research methods")
-                click E call showInfo("Create fictional characters representing user types")
-                click F call showInfo("Set specific, measurable goals for the project")
-                click G call showInfo("Define metrics to measure project success")
+                click B call showInfo("User Needs", "Identify and analyze the needs of your target users. Consider the audience culture - corporate, artistic, educational, etc. - and ensure content relevance.")
+                click C call showInfo("Business Objectives", "Define clear business goals such as increased brand awareness, ROI, and social currency. Consider the unique selling points and competitive advantages.")
+                click D call showInfo("User Research", "Conduct stakeholder interviews, competitor reviews, user interviews, and product audits if applicable.")
+                click E call showInfo("Personas", "Create fictional characters representing user types, considering demographics, goals, pain points, and behaviors.")
+                click F call showInfo("Project Goals", "Set specific, measurable goals for the project. Create a roadmap that provides value for both users and the business.")
+                click G call showInfo("Success Metrics", "Define metrics to measure project success, such as conversion rates, user engagement, and customer satisfaction.")
+                click H call showInfo("Content Considerations", "Ensure content is culturally appropriate and relevant. Consider how to track and catalog content intuitively.")
+                click I call showInfo("Technology Appropriateness", "Evaluate if the chosen technology is suitable for the target audience and project goals.")
+                click J call showInfo("Competitive Analysis", "Analyze competitors' strengths and weaknesses. Identify opportunities for differentiation.")
+                click K call showInfo("Value Proposition", "Clearly define what value the product will provide to users and how it differs from alternatives.")
             `,
             C: `
             flowchart TD
-                A[Scope Plane] --> B[Functional Specifications]
-                A --> C[Content Requirements]
-                B --> D[Feature List]
-                D --> D1[Core Features]
-                D --> D2[Nice-to-have Features]
-                B --> E[Technical Requirements]
-                C --> F[Content Audit]
-                C --> G[Content Strategy]
-                G --> G1[Content Creation]
-                G --> G2[Content Management]
-                G --> G3[Content Governance]
+                A(Scope Plane) --> B(Functional Specifications)
+                A --> C(Content Requirements)
+                B --> D(Feature List)
+                D --> D1(Core Features)
+                D --> D2(Nice-to-have Features)
+                B --> E(Technical Requirements)
+                C --> F(Content Audit)
+                C --> G(Content Strategy)
+                A --> H(Agile Approach)
+                A --> I(Trade-offs)
+                A --> J(User Stories)
 
-                click B call showInfo("Define the specific functions and capabilities of the product")
-                click C call showInfo("Outline the content needed to support user needs and business goals")
-                click D call showInfo("Compile a list of all features, prioritized by importance")
-                click E call showInfo("Specify the technical needs to support the planned features")
-                click F call showInfo("Review existing content and identify gaps")
-                click G call showInfo("Plan for creating, delivering, and managing content")
+                click B call showInfo("Functional Specifications", "Define the specific functions and capabilities of the product. Ensure all features align with the strategy.")
+                click C call showInfo("Content Requirements", "Outline the content needed to support user needs and business goals. Consider mixed content types: video, images, text, audio.")
+                click D call showInfo("Feature List", "Compile a list of all features, prioritized by importance and feasibility. Use the importance vs. viability matrix to decide what's in and what's out.")
+                click E call showInfo("Technical Requirements", "Specify the technical needs to support the planned features, including non-functional requirements like security and scalability.")
+                click F call showInfo("Content Audit", "Review existing content and identify gaps. Ensure all content ideas are feasible given available resources.")
+                click G call showInfo("Content Strategy", "Plan for creating, delivering, and managing content. Consider format, purpose, and size of different content types.")
+                click H call showInfo("Agile Approach", "Adopt an agile methodology with sprints. Commit to small, bite-sized increments of development to minimize documentation and keep things simple.")
+                click I call showInfo("Trade-offs", "Make necessary trade-offs between business objectives and user needs. Remember that trade-offs are essential to strategy and create the need for choice.")
+                click J call showInfo("User Stories", "Create user stories to describe how users interact with the system. Include scenarios for different user types like recruiters, employers, and collaborators.")
             `,
             D: `
             flowchart TD
-                A[Structure Plane] --> B[Information Architecture]
-                A --> C[Interaction Design]
-                B --> D[Site Map]
-                B --> E[Content Organization]
-                E --> E1[Taxonomies]
-                E --> E2[Metadata]
-                C --> F[User Flows]
-                C --> G[Feedback Mechanisms]
-                G --> G1[Error Handling]
-                G --> G2[Confirmations]
-                G --> G3[Help Systems]
+                A(Structure Plane) --> B(Information Architecture)
+                A --> C(Interaction Design)
+                B --> D(Site Map)
+                B --> E(Content Organization)
+                C --> F(User Flows)
+                C --> G(Feedback Mechanisms)
+                B --> H(IA Types)
+                C --> I(Consistency)
+                C --> J(Learnability)
+                C --> K(Visibility)
 
-                click B call showInfo("Design how information is organized and structured within the product")
-                click C call showInfo("Define how users will interact with the product and its features")
-                click D call showInfo("Create a visual representation of the product's pages or screens")
-                click E call showInfo("Determine how content will be categorized and related")
-                click F call showInfo("Map out the steps users take to complete tasks")
-                click G call showInfo("Plan how the system will respond to user interactions")
+                click B call showInfo("Information Architecture", "Design how information is organized and structured within the product. Create organization and navigation schemas that allow users to move efficiently through content.")
+                click C call showInfo("Interaction Design", "Define how users will interact with the product and its features. Create meaningful relationships between elements, content, and information.")
+                click D call showInfo("Site Map", "Create a visual representation of the product's pages or screens, showing the hierarchy and connections between different sections.")
+                click E call showInfo("Content Organization", "Determine how content will be categorized and related. Use appropriate organizing principles such as audience, geography, or topic.")
+                click F call showInfo("User Flows", "Map out the steps users take to complete tasks. Reveal workflows and reduce the risk of user error.")
+                click G call showInfo("Feedback Mechanisms", "Plan how the system will respond to user interactions. Include error handling, confirmations, and help systems.")
+                click H call showInfo("IA Types", "Choose appropriate IA types such as hierarchical tree structure, nested list, hub-and-spoke, or dashboard, based on the product's needs and target devices.")
+                click I call showInfo("Consistency", "Ensure consistency in navigation, interactive features, content style, and overall user experience to meet user expectations.")
+                click J call showInfo("Learnability", "Design interactions that are intuitive and easy to learn. Aim for single-trial learning where possible.")
+                click K call showInfo("Visibility", "Make all elements discoverable. Use techniques like content hinting to encourage exploration.")
             `,
             E: `
             flowchart TD
-                A[Skeleton Plane] --> B[Wireframes]
-                A --> C[Navigation Design]
-                A --> D[Information Design]
-                B --> E[Page Layouts]
-                B --> B1[Responsive Design]
-                C --> F[Menu Structures]
-                C --> C1[Wayfinding]
-                D --> G[Content Hierarchy]
-                D --> D1[Form Design]
+                A(Skeleton Plane) --> B(Wireframes)
+                A --> C(Navigation Design)
+                A --> D(Interface Design)
+                B --> E(Page Layouts)
+                C --> F(Menu Structures)
+                D --> G(Form Design)
+                A --> H(Progressive Disclosure)
+                A --> I(Visual Grouping)
+                A --> J(Metaphors)
+                A --> K(Information Design)
 
-                click B call showInfo("Create basic layouts of pages or screens")
-                click C call showInfo("Design how users will move through the product")
-                click D call showInfo("Organize and present information effectively")
-                click E call showInfo("Determine the arrangement of elements on each page")
-                click B1 call showInfo("Ensure designs work across different screen sizes")
-                click F call showInfo("Design the structure of navigation menus")
-                click C1 call showInfo("Help users understand where they are in the product")
-                click G call showInfo("Establish the relative importance of different content elements")
-                click D1 call showInfo("Design user-friendly and efficient forms")
+                click B call showInfo("Wireframes", "Create basic layouts of pages or screens. Use wireframes to visualize content arrangement, prioritize elements, and ensure consistency across the site.")
+                click C call showInfo("Navigation Design", "Design how users will move through the product. Consider different navigation methods: browsing, searching, filtering, and pagination.")
+                click D call showInfo("Interface Design", "Organize and present information effectively. Focus on usability and minimizing cognitive load.")
+                click E call showInfo("Page Layouts", "Determine the arrangement of elements on each page. Maintain consistency in layout across similar pages.")
+                click F call showInfo("Menu Structures", "Design the structure of navigation menus. Use clear, understandable labels and consider using icons alongside text.")
+                click G call showInfo("Form Design", "Design user-friendly and efficient forms. Break long forms into steps and use clear labels and error messages.")
+                click H call showInfo("Progressive Disclosure", "Reveal information over time and across space. Use techniques like accordions or tabbed interfaces to manage complex information.")
+                click I call showInfo("Visual Grouping", "Group related elements together visually. Use proximity, similarity, and other Gestalt principles to create clear relationships between elements.")
+                click J call showInfo("Metaphors", "Use visual metaphors to provide shortcuts for understanding. Ensure metaphors are intuitive and taken from everyday life.")
+                click K call showInfo("Information Design", "Present information clearly and effectively. Use appropriate charts, graphs, and other visualizations to communicate complex data.")
             `,
             F: `
             flowchart TD
-                A[Surface Plane] --> B[Visual Design]
-                A --> C[Style Guide]
-                B --> D[Color Scheme]
-                B --> E[Typography]
-                B --> F[Images and Icons]
-                B --> B1[Animations]
-                C --> G[Design Patterns]
-                C --> H[Brand Guidelines]
-                C --> C1[Accessibility Guidelines]
+                A(Surface Plane) --> B(Visual Design)
+                A --> C(Style Guide)
+                B --> D(Color Scheme)
+                B --> E(Typography)
+                B --> F(Images and Icons)
+                C --> G(Design Patterns)
+                C --> H(Brand Guidelines)
+                A --> I(Visual Language)
+                A --> J(Contrast and Hierarchy)
+                A --> K(Responsive Design)
 
-                click B call showInfo("Develop the visual elements of the interface")
-                click C call showInfo("Create a comprehensive guide for consistent design")
-                click D call showInfo("Select and apply a cohesive color palette")
-                click E call showInfo("Choose appropriate fonts and establish text styles")
-                click F call showInfo("Design or select images and icons for the interface")
-                click B1 call showInfo("Add motion design to enhance user experience")
-                click G call showInfo("Establish reusable design solutions for common elements")
-                click H call showInfo("Ensure alignment with overall brand identity")
-                click C1 call showInfo("Ensure the design is usable by people with diverse abilities")
+                click B call showInfo("Visual Design", "Develop the visual elements of the interface. Create a cohesive look and feel that aligns with the brand and enhances usability.")
+                click C call showInfo("Style Guide", "Create a comprehensive guide for consistent design across the product. Include rules for colors, typography, spacing, and component usage.")
+                click D call showInfo("Color Scheme", "Select and apply a cohesive color palette. Consider color psychology, accessibility, and brand alignment.")
+                click E call showInfo("Typography", "Choose appropriate fonts and establish text styles. Ensure readability and establish a clear typographic hierarchy.")
+                click F call showInfo("Images and Icons", "Design or select images and icons for the interface. Use consistent style and ensure they communicate clearly.")
+                click G call showInfo("Design Patterns", "Establish reusable design solutions for common elements. Create a library of UI components for consistency and efficiency.")
+                click H call showInfo("Brand Guidelines", "Ensure alignment with overall brand identity. Apply brand colors, fonts, and imagery consistently throughout the product.")
+                click I call showInfo("Visual Language", "Develop a visual language that provides information and context. Use visual elements to create a unique identity for the site.")
+                click J call showInfo("Contrast and Hierarchy", "Use contrast to create visual hierarchy and guide users' attention. Ensure important elements are easily recognizable.")
+                click K call showInfo("Responsive Design", "Ensure the design works across different screen sizes and devices. Use flexible layouts and consider how elements adapt to different viewports.")
             `,
             H: `
             flowchart TD
-                A[User Testing] --> B[Usability Testing]
-                A --> C[A/B Testing]
-                A --> D[Analytics Review]
-                B --> B1[Task Completion]
-                B --> B2[User Satisfaction]
-                C --> C1[Conversion Rate]
-                C --> C2[User Engagement]
-                D --> D1[User Behavior]
-                D --> D2[Performance Metrics]
+                A(User Testing) --> B(Usability Testing)
+                A --> C(A/B Testing)
+                A --> D(Analytics Review)
+                B --> B1(Task Completion)
+                B --> B2(User Satisfaction)
+                C --> C1(Conversion Rate)
+                C --> C2(User Engagement)
+                D --> D1(User Behavior)
+                D --> D2(Performance Metrics)
 
-                click B call showInfo("Evaluate how easily users can complete tasks")
-                click C call showInfo("Compare different versions of design elements")
-                click D call showInfo("Analyze user behavior data")
-                click B1 call showInfo("Measure how effectively users complete specific tasks")
-                click B2 call showInfo("Gather feedback on user experience and satisfaction")
-                click C1 call showInfo("Compare how different versions affect desired actions")
-                click C2 call showInfo("Measure how different versions impact user interaction")
-                click D1 call showInfo("Analyze patterns in how users interact with the product")
-                click D2 call showInfo("Evaluate technical performance and its impact on UX")
+                click B call showInfo("Usability Testing", "Evaluate how easily users can complete tasks. Observe users interacting with the product and gather feedback.")
+                click C call showInfo("A/B Testing", "Compare different versions of design elements. Test variations to determine which performs better with users.")
+                click D call showInfo("Analytics Review", "Analyze user behavior data. Use quantitative data to understand how users interact with the product.")
+                click B1 call showInfo("Task Completion", "Measure how effectively users complete specific tasks. Identify areas where users struggle or make errors.")
+                click B2 call showInfo("User Satisfaction", "Gather feedback on user experience and satisfaction. Use surveys and interviews to collect qualitative data.")
+                click C1 call showInfo("Conversion Rate", "Compare how different versions affect desired actions. Measure the impact of design changes on key performance indicators.")
+                click C2 call showInfo("User Engagement", "Measure how different versions impact user interaction. Analyze metrics like time on page, click-through rates, and return visits.")
+                click D1 call showInfo("User Behavior", "Analyze patterns in how users interact with the product. Use heat maps, user flows, and other analytics tools to gain insights.")
+                click D2 call showInfo("Performance Metrics", "Evaluate technical performance and its impact on UX. Monitor load times, error rates, and other technical factors affecting user experience.")
             `
+        
         };
 
         async function renderChart(chart) {
@@ -208,9 +229,9 @@
             document.getElementById('backButton').style.display = 'block';
         }
 
-        window.showInfo = function(info) {
+        window.showInfo = function(title, info) {
             const infoPanel = document.getElementById('infoPanel');
-            infoPanel.innerHTML = info;
+            infoPanel.innerHTML = `<h3>${title}</h3><p>${info}</p>`;
             infoPanel.style.display = 'block';
         }
 
