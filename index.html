@@ -7,14 +7,18 @@
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 0 auto; padding: 20px; }
         h1 { color: #2c3e50; }
-        #chart-container { margin-top: 5vh; height: 40vh; width: 95%; margin-left: auto; margin-right: auto; }
-        .back-button { display: none; margin-bottom: 10vh; padding: 10px 20px; background-color: #3498db; color: white; border: none; cursor: pointer; }
-        .info-panel { display: none; margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 5px; }
+        #chart-container { margin-top: 5vh; height: 30vh; width: 95%; margin-left: auto; margin-right: auto; }
+        .back-button { display: none; margin-left: auto; margin-right: 10vh; padding: 10px 20px; background-color: #3498db; color: white; border: none; cursor: pointer; }
+        .info-panel { display: none; margin-top: 0px; padding: 15px; background-color: #f0f0f0; border-radius: 5px; }
         .info-panel h3 { margin-top: 0; color: #2c3e50; }
+        p { font-size: 0.9rem; width:95vw; margin-left: 5; }
     </style>
 </head>
 <body>
     <h1>Interactive UX/UI Development Guide</h1>
+    <h4>"For most users the UI is the system".</h4>
+    <p>Jesse James Garrett's Five Planes of User Experience Design provides a comprehensive framework for creating user-centered digital products. This model breaks down the UX design process into five interconnected layers, moving from abstract to concrete:
+        </p>
     <div id="chart-container"></div>
     <button id="backButton" class="back-button">Back to Main Chart</button>
     <div id="infoPanel" class="info-panel"></div>
@@ -44,7 +48,11 @@
                 G --> H(User Testing)
                 H -->|Iterate| B
 
-                click B call clickPlane("B") "Strategy Plane: Define project objectives and user needs"
+                click B call clickPlane("B") "Strategy Plane: <br><br>
+At the foundation of UX design lies the Strategy Plane, which focuses on two key aspects: <br><br>
+Product Objectives: Defining what the organization aims to achieve with the product.<br>
+User Needs: Understanding what users want to accomplish and their pain points.<br><br>
+This plane involves extensive user research to align business goals with user expectations, setting the stage for all subsequent design decisions."
                 click C call clickPlane("C") "Scope Plane: Determine functional specifications and content requirements"
                 click D call clickPlane("D") "Structure Plane: Develop information architecture and interaction design"
                 click E call clickPlane("E") "Skeleton Plane: Create wireframes, navigation design, and interface layout"
