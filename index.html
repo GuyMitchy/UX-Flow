@@ -6,14 +6,14 @@
     <title>Interactive UX/UI Development Guide</title>
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 0 auto; padding: 20px; }
-        h1 { color: #2c3e50; }
+        h1 { color: #2c3e50; margin:1vh}
         #chart-container { margin-top: 5vh; height: auto; width: auto; margin-left: auto; margin-right: auto; }
         .back-button { display: none; margin-left: auto; margin-right: 10vh; padding: 10px 20px; background-color: #3498db; color: white; border: none; cursor: pointer; }
         .info-panel { display: none; margin-top: 0px; padding: 15px; font-size:1rem; background-color: #f0f0f0; border-radius: 5px; }
         .info-panel h3 { margin-top: 0; color: #2c3e50; }
-        p { font-size: 0.8rem; width:95vw; margin-left: 5; }
-        h4 { font-size: .9rem;}
-        h1 { font-size: 1.2rem;}
+        p { font-size: 0.9rem; width:95vw; margin-left: 5; }
+        h4 { font-size: 1.2rem; margin: auto;}
+        h1 { font-size: 1.5rem;}
     </style>
 </head>
 <body>
@@ -22,8 +22,12 @@
     <h4>"For most users the UI is the system."</h4>
     <p>Jesse James Garrett's Five Planes of User Experience Design provides a comprehensive framework for creating user-centered digital products.
         His model breaks down the UX design process into five interconnected layers, moving from abstract to concrete.
-        This Interactive UX/UI Development Guide enables you to traverse the model from two different perpectives: The "Product Arc" (the developers perspective), and the "Users Arc" (your perspective as a user, not a developer).
-        This is a tool for developers, designers, and product managers to understand the UX design process and create better user experiences. Click on the elements to explore each plane in detail.
+        This Interactive UX/UI Development Guide shows the model from two perspectives: The "Product Arc" and the "User Arc".<br>
+        These two arcs run in conjunction with each other, over-lapping throughout the design process. 
+        The Product Arc begins with a problem, or product idea, and the User Arc begins with the identification of a possible end-user. 
+        <br>In the User Arc we move through the planes in reverse, because this is how the user experiences your product.
+        <br>This is a tool for developers, designers, and product managers to understand the UX design process and create better user experiences. 
+        Click on the elements to explore each plane in detail, and shift perspective to move between arcs.
         </p>
     </header>
     <div id="chart-container"></div>
@@ -75,18 +79,36 @@ let currentMainChart = 'selector';
                 A(Product Arc: Project Initiation) --> B(Strategy Plane)
                 B --> C(Scope Plane)
                 C --> D(Structure Plane)
+                C -.-> D(Structure Plane)
                 D --> E(Skeleton Plane)
+                D -.-> H
+                D -.-> E
                 E --> F(Surface Plane)
-                F --> G(Product 1.0)
+                E -.-> F
+                E -.-> H
+                F --> G(Product Development)
+                F -.-> G
+                F -.-> H
+                
                 G --> H(User Testing)
                 H -->|Iterate| B
 
                 CP["Shift Perspective"]
+                
+                click A call clickPlane("G") "Project Initiation Overview:
+                Project Initiation lays the foundation for product development. It begins with identifying the core problem and conducting market research to understand the landscape. Teams generate innovative ideas to address the identified issues. Key stakeholders are recognized, and initial resource needs are estimated. The phase also involves a preliminary evaluation of the tech stack and defining the Minimum Viable Product. This crucial stage aligns the team and stakeholders, setting the direction for the entire product lifecycle."
+                
+                click G call clickPlane("I") "Product Development Overview:<br>
+                Product Development is the core phase where ideas become reality. 
+                It starts with detailed design work, followed by the implementation of the product through coding and building. Rigorous testing ensures quality and functionality. 
+                The process involves continuous iteration and refinement based on feedback. Teams work on optimizing performance and creating comprehensive documentation. 
+                <br>The phase concludes with preparation for deployment.
+                 Throughout this stage, collaboration across different disciplines is key to transforming the product vision into a tangible, market-ready solution."
 
                 click B call clickPlane("B") "Strategy Plane: <br>
-                At the foundation of UX design lies the Strategy Plane, which focuses on two key aspects. <br>Product objectives -  which define what the organization aims to achieve with the product.<br>
-                User needs - which is about understanding what users want to accomplish and their pain points.
-                This plane involves extensive user research to align business goals with user expectations, setting the stage for all subsequent design decisions."
+                At the foundation of UX design lies the Strategy Plane. This plane involves extensive user research to align business goals with user expectations, setting the stage for all subsequent design decisions. It focuses on two key aspects.Product objectives -  which define what the organization aims to achieve with the product.<br>
+                <br>User needs - which is about understanding what users want to accomplish and their pain points.
+                "
 
 
                 click C call clickPlane("C") "Scope Plane:<br>
@@ -133,227 +155,346 @@ let currentMainChart = 'selector';
             
             Y: `
             flowchart LR
-                A(User Arc:<br> Need Arises):::large --> B(Awareness and Need Recognition)
-                B --> C(Consideration and Evaluation)
-                C --> D(Decision Making)
-                D --> E(Onboarding and First Use)
-                E --> F(Regular Use and Mastery)
-                F --> G(Loyal User / Advocate)
-                G --> H(Continuous Feedback and Iteration)
+                A(User Arc: End User Identification) --> B(Surface Plane)
+                B --> C(Skeleton Plane)
+                C --> D(Structure Plane)
+                D --> E(Scope Plane)
+                E --> F(Strategy Plane)
+                F --> G(Product Development)
+                G --> H(User Feedback)
                 H -->|Iterate| B
 
                 CP["Shift Perspective"]
 
-                click B call clickPlane("Y1") "Awareness and Need Recognition: <br>
-                This phase focuses on how users become aware of their problem or need, it sets the foundation for the user's journey and their initial perception of the product. <br>
-                Problem Realization - User recognizes a need or problem in their life.<br>
-                Initial Research - User starts exploring potential solutions.<br>
-                Brand Awareness - User encounters the product through various channels."
+                click A call clickPlane("Y0") "End User Identification: 
+                Begin by defining the target user through comprehensive user research.
+                Create detailed user personas to understand their needs, goals, and pain points.
+                Conduct user interviews, surveys, and market analysis to gather insights.
+                Establish a clear understanding of the users context and environment.
+                This foundational step informs all subsequent design decisions."
 
-                click C call clickPlane("Y2") "Consideration and Evaluation:<br>
-                In this phase, users evaluate the product against their needs. This stage is crucial for capturing user interest and demonstrating the product's value proposition.<br>
-                Feature Exploration - User examines product features and capabilities.<br>
-                Content Consumption - User engages with product information and reviews.<br>
-                Need Alignment - User assesses how well the product matches their requirements."
+                click B call clickPlane("Y1") "Surface Plane:
+                Focus on creating an interface that resonates with the identified user.
+                Design visual elements that appeal to the users preferences and expectations.
+                Develop a color scheme, typography, and imagery that aligns with user demographics.
+                Consider the users cultural background and aesthetic preferences.
+                Incorporate familiar UI patterns to enhance learnability and comfort.
+                Ensure the visual design supports the users goals and tasks efficiently."
 
-                click D call clickPlane("Y3") "Decision Making:<br>
-                This phase involves the user's process of deciding to use the product. Their experience here can significantly influence their decision to adopt the product.<br>
-                Information Processing -  User understands how the product is structured and functions.<br>
-                Usability Assessment -  User evaluates the perceived ease of use and learning curve.<br>
-                Integration Consideration -  User considers how the product fits into their life or work.<br>
-                The user's experience here can significantly influence their decision to adopt the product."
+                click C call clickPlane("Y2") "Skeleton Plane:
+                Arrange interface elements to match the users mental models and expectations.
+                Design navigation that aligns with the users thought processes and task flows.
+                Optimize information presentation based on the users information processing habits.
+                Create wireframes and prototypes that reflect the users typical interaction patterns.
+                Ensure the layout supports the users primary goals and frequent tasks.
+                Incorporate user feedback to refine the interface structure and flow."
 
-                click E call clickPlane("Y4") "Onboarding and First Use:<br>
-                This phase covers the user's initial interactions with the product. A smooth onboarding experience is vital for user retention and long-term engagement.<br>
-                First-Time Experience -  User's crucial first moments with the product interface.<br>
-                Navigation Learning -  User becomes familiar with the product's layout and basic features.<br>
-                Setup and Customization - User configures the product to their preferences."
+                click D call clickPlane("Y3") "Structure Plane:
+                Develop an information architecture that mirrors the users mental organization of content.
+                Design interaction patterns that feel natural and intuitive to the target user.
+                Create user flows that align with the users typical problem-solving approaches.
+                Organize content and functionality in a way that matches the users priorities.
+                Ensure the structure supports both novice and expert users within the target demographic.
+                Validate the structure through user testing and iterative refinement."
+
+                click E call clickPlane("Y4") "Scope Plane:
+                Define features and functionalities that directly address the users needs and pain points.
+                Prioritize content types based on their relevance and value to the target user.
+                Establish clear boundaries to prevent feature bloat that could overwhelm the user.
+                Align the product scope with the users expectations and desired outcomes.
+                Create a feature roadmap that reflects the users evolving needs over time.
+                Ensure every element in the scope contributes to solving the users problems."
+
+                click F call clickPlane("Y5") "Strategy Plane:
+                Align business objectives with the identified user needs and expectations.
+                Develop a product strategy that creates value for both the user and the organization.
+                Define success metrics that reflect improvements in the users experience and outcomes.
+                Create a long-term vision for the product that anticipates future user needs.
+                Establish a feedback loop to continuously validate strategic decisions against user impact.
+                Ensure the strategy remains flexible to accommodate shifts in user behavior or market conditions."
+
+                click G call clickPlane("Y7") "Product Development:
+                Implement the design decisions made across all planes with a user-centric approach.
+                Prioritize development tasks based on their impact on the users core needs and goals.
+                Maintain close collaboration between designers, developers, and user representatives.
+                Conduct ongoing usability testing throughout the development process.
+                Implement analytics and tracking to measure user behavior and product performance.
+                Prepare for a phased rollout that allows for user acclimation and feedback collection."
+
+                click H call clickPlane("Y6") "User Feedback:
+                Establish multiple channels for collecting user feedback post-launch.
+                Conduct regular user surveys, interviews, and usability tests with the target demographic.
+                Analyze user behavior data to identify patterns, pain points, and areas for improvement.
+                Prioritize feedback based on its alignment with core user needs and product strategy.
+                Create a systematic process for incorporating user feedback into future iterations.
+                Maintain open communication with users about how their feedback influences the product."
                 
-                click F call clickPlane("Y5") "Regular Use and Mastery:<br>
-                This phase involves the user's ongoing experience, and determines their long-term satisfaction with the product and loyalty to the brand.<br>
-                Routine Interactions -  User incorporates the product into their daily activities.<br>
-                Feature Discovery -  User explores and adopts more advanced functionalities.<br>
-                Visual and Sensory Experience -  User engages with the product's interface and design elements.   "
 
-                click H call clickPlane("Y6") "Continuous Feedback and Iteration:<br>
-                This ongoing phase involves the user's evolving relationship with the product. Insights gathered here drive product improvements and inform the entire design process.<br>
-                Experience Reflection - User considers their overall journey with the product.<br>
-                Feedback Provision -  User offers suggestions, reports issues, or participates in surveys.<br>
-                Loyalty Development -  User decides to continue using and potentially recommend the product.  "
-
-                click CP call clickPlane("X") "Shift to Product Perspective"
-
-                style CP fill:#3498db,stroke:#ffffff,stroke-width:2px,color:#ffffff 
-                style A fill:#f9f,stroke:#333,stroke-width:2px            
+                click CP call clickPlane("X") "Shift to User Perspective"
+                style A fill:#f9f,stroke:#333,stroke-width:2px
                 style G fill:#bfb,stroke:#333,stroke-width:2px
+                style CP fill:#3498db,stroke:#ffffff,stroke-width:2px,color:#ffffff 
                 
             
             `,
+            Y0: `
+            flowchart TD
+                A(User Identity Discovery) --> B(User Demographic Profiling)
+                A --> C(User Psychographic Analysis)
+                A --> D(User Behavioral Patterns)
+                B --> B1(User Age and Gender Insights)
+                B --> B2(User Geographic Distribution)
+                C --> C1(User Values and Beliefs)
+                C --> C2(User Lifestyle Choices)
+                D --> D1(User Technology Usage)
+                D --> D2(User Purchase Behaviors)
+                A --> E(User Needs Assessment)
+                A --> F(User Context Mapping)
+                A --> G(User Skill Level Evaluation)
+                A --> H(User Motivation Analysis)
 
+                click A call showInfo("User Identity Discovery", "Focus on developing a comprehensive understanding of who your users are. This involves exploring various aspects of their lives, behaviors, and motivations to create a holistic user profile.")
+                click B call showInfo("User Demographic Profiling", "Analyze the basic characteristics of your user base. This provides a foundation for understanding who your users are on a broad level.")
+                click C call showInfo("User Psychographic Analysis", "Delve into the psychological attributes of your users. This helps in understanding the why behind user behaviors and preferences.")
+                click D call showInfo("User Behavioral Patterns", "Examine how users typically act and make decisions. This provides insights into what users do, rather than just who they are.")
+                click B1 call showInfo("User Age and Gender Insights", "Understand the age range and gender distribution of your users. This can inform design decisions related to accessibility, content, and visual appeal.")
+                click B2 call showInfo("User Geographic Distribution", "Map where your users are located. This can influence language choices, cultural considerations, and feature prioritization.")
+                click C1 call showInfo("User Values and Beliefs", "Identify the core values and beliefs that drive your users. This deep understanding can help in creating meaningful connections with users.")
+                click C2 call showInfo("User Lifestyle Choices", "Examine the day-to-day lifestyle choices of your users. This can inform how your product fits into their daily lives.")
+                click D1 call showInfo("User Technology Usage", "Analyze how your users interact with technology in general. This informs decisions about the complexity and features of your product.")
+                click D2 call showInfo("User Purchase Behaviors", "Understand how users make purchasing decisions. This can guide pricing strategies and feature prioritization.")
+                click E call showInfo("User Needs Assessment", "Identify the core needs and pain points of your users. This ensures your product addresses real user problems and desires.")
+                click F call showInfo("User Context Mapping", "Understand the various contexts in which users will interact with your product. This informs design decisions for different use cases and environments.")
+                click G call showInfo("User Skill Level Evaluation", "Assess the range of skills and expertise in your user base. This guides decisions about product complexity and onboarding processes.")
+                click H call showInfo("User Motivation Analysis", "Explore what drives users to seek out and use your product. This helps in designing features and messaging that resonate with user motivations.")
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+            `,
             Y1: `
             flowchart TD
-                A("<div style='font-size:3rem;'>Awareness and<br> Need Recognition</div>") --> B["<div style='font-size:3rem;'>Personal<br> Needs</div>"]
-                A --> C["<div style='font-size:3rem;'>Solution <br>Expectations</div>"]
+                A(User Interaction with Surface) --> B(User Visual Experience)
+                A --> C(User Style Expectations)
+                B --> D(User Color Perception)
+                B --> E(User Text Readability)
+                B --> F(User Icon Recognition)
+                C --> G(User Interface Familiarity)
+                C --> H(User Brand Association)
+                A --> I(User Visual Comprehension)
+                A --> J(User Attention Flow)
+                A --> K(User Device Adaptation)
 
-                B --> D["<div style='font-size:3rem;'>Self-Reflection</div>"]
-                D --> D1["<div style='font-size:3rem;'>Online<br> Research</div>"]
-                D --> D2["<div style='font-size:3rem;'>Peer <br>Discussions</div>"]
-                D --> D3["<div style='font-size:3rem;'>Personal<br> Experiences</div>"]
-                B --> E["<div style='font-size:3rem;'>Self-Identification</div>"]
-                E --> E1["<div style='font-size:3rem;'>Lifestyle<br> Factors</div>"]
-                E --> E2["<div style='font-size:3rem;'>Goals and <br>Pain Points</div>"]
-                E --> E3["<div style='font-size:3rem;'>Daily <br>Habits</div>"]
-                C --> F["<div style='font-size:3rem;'>Desired <br>Outcomes</div>"]
-                F --> F1["<div style='font-size:3rem;'>Define Success <br>Criteria</div>"]
-                F --> F2["<div style='font-size:3rem;'>Envision Ideal<br> Solution</div>"]
-                C --> G["<div style='font-size:3rem;'>Value Assessment</div>"]
-                G --> G1["<div style='font-size:3rem;'>Time/Effort <br>Savings</div>"]
-                G --> G2["<div style='font-size:3rem;'>Quality of Life<br> Improvement</div>"]
-                G --> G3["<div style='font-size:3rem;'>Personal <br>Satisfaction</div>"]
-                A --> H["<div style='font-size:3rem;'>Information<br>Gathering</div>"]
-                A --> I["<div style='font-size:3rem;'>Technology <br>Comfort Level</div>"]
-                A --> J["<div style='font-size:3rem;'>Alternative <br>Solutions</div>"]
-                A --> K["<div style='font-size:3rem;'>Initial<br> Expectations</div>"]
+                click A call showInfo("User Interaction with Surface", "Focus on how users first encounter and interact with the products visual interface. Consider their initial impressions, emotional responses, and ease of engagement.")
+                click B call showInfo("User Visual Experience", "Analyze how users perceive and interpret the visual elements. Ensure the design resonates with user preferences and enhances their overall experience.")
+                click C call showInfo("User Style Expectations", "Understand users expectations for visual style based on their experiences with similar products. Align design choices with user mental models and industry standards.")
+                click D call showInfo("User Color Perception", "Examine how users interpret and respond to the color scheme. Consider cultural color associations, accessibility needs, and emotional impact on the target audience.")
+                click E call showInfo("User Text Readability", "Assess how easily users can read and comprehend text elements. Optimize typography for different user groups, considering factors like age, language, and reading environments.")
+                click F call showInfo("User Icon Recognition", "Evaluate users ability to quickly understand and interact with icons and images. Use familiar symbols and provide clear visual cues that align with users mental models.")
+                click G call showInfo("User Interface Familiarity", "Analyze users comfort level with interface patterns. Incorporate familiar design elements to reduce cognitive load while introducing innovative features judiciously.")
+                click H call showInfo("User Brand Association", "Examine how users connect visual elements to brand identity. Ensure consistent brand representation that builds trust and recognition among the target audience.")
+                click I call showInfo("User Visual Comprehension", "Assess how effectively users understand information through visual means. Develop a visual language that communicates clearly to the specific user demographic.")
+                click J call showInfo("User Attention Flow", "Map how users visual attention moves through the interface. Use contrast and hierarchy to guide users focus towards key elements and actions.")
+                click K call showInfo("User Device Adaptation", "Understand how users interact with the product across different devices. Ensure the design adapts seamlessly to users preferred devices and usage contexts.")
 
-                click B call showInfo("Personal Needs", "Reflect on your current challenges and aspirations. Consider how these needs align with your lifestyle, work, and personal goals.")
-                click C call showInfo("Solution Expectations", "Envision what an ideal solution would look like. Think about the features and benefits that would best address your needs.")
-                click D call showInfo("Self-Reflection", "Engage in introspection about your needs. Research online, discuss with peers, and consider your personal experiences to better understand your requirements.")
-                click E call showInfo("Self-Identification", "Consider how your lifestyle, goals, and daily habits influence your needs and potential solutions.")
-                click F call showInfo("Desired Outcomes", "Define what success looks like for you. Envision how an ideal solution would improve your life or work.")
-                click G call showInfo("Value Assessment", "Evaluate potential benefits of a solution. Consider time/effort savings, quality of life improvements, and personal satisfaction.")
-                click H call showInfo("Information Gathering", "Collect information about your needs and potential solutions. Use various sources like blogs, forums, or expert opinions.")
-                click I call showInfo("Technology Comfort Level", "Assess your comfort with technology and willingness to learn new tools. This influences the types of solutions you'll consider.")
-                click J call showInfo("Alternative Solutions", "Explore different ways to address your needs, including non-technological solutions or workarounds.")
-                click K call showInfo("Initial Expectations", "Form preliminary expectations about potential solutions. Consider what features or benefits would be most valuable to you.")
-                
+                style A fill:#f9f,stroke:#333,stroke-width:2px
             `,
 
             Y2: `
             flowchart TD
-                A(Consideration and Evaluation) --> B(Solution Capabilities)
-                A --> C(Information Needs)
-                B --> D(Feature Exploration)
-                D --> D1(Essential Features)
-                D --> D2(Bonus Features)
-                B --> E(Technical Compatibility)
-                C --> F(Available Resources)
-                C --> G(Learning Approach)
-                A --> H(Trial and Error)
-                A --> I(Pros and Cons Analysis)
-                A --> J(Personal Use Cases)
+                A(User Interaction Framework) --> B(User Page Perception)
+                A --> C(User Navigation Patterns)
+                A --> D(User Interface Interaction)
+                B --> E(User Content Expectations)
+                C --> F(User Menu Interaction)
+                D --> G(User Form Experience)
+                A --> H(User Information Discovery)
+                A --> I(User Element Association)
+                A --> J(User Conceptual Models)
+                A --> K(User Information Comprehension)
 
-                click B call showInfo("Solution Capabilities", "Explore the specific functions and capabilities of potential solutions. Consider how well each aligns with your needs and expectations.")
-                click C call showInfo("Information Needs", "Identify the types of information you need to make an informed decision. This might include product details, user reviews, or expert opinions.")
-                click D call showInfo("Feature Exploration", "Examine the features offered by different solutions. Prioritize based on your needs and wants, distinguishing between must-haves and nice-to-haves.")
-                click E call showInfo("Technical Compatibility", "Assess whether the solution is compatible with your existing devices, software, or skills. Consider any technical requirements or limitations.")
-                click F call showInfo("Available Resources", "Review what information and resources are readily available about each solution. Identify any gaps in your knowledge that need to be filled.")
-                click G call showInfo("Learning Approach", "Consider how you prefer to learn about new solutions. This could involve reading documentation, watching tutorials, or hands-on experimentation.")
-                click H call showInfo("Trial and Error", "Be open to trying out different solutions in small ways. Look for free trials or demos that allow you to test drive the solution before committing.")
-                click I call showInfo("Pros and Cons Analysis", "Weigh the advantages and disadvantages of each potential solution. Consider factors like cost, ease of use, and long-term value.")
-                click J call showInfo("Personal Use Cases", "Imagine how you would use each solution in your daily life or work. Create scenarios that reflect your specific needs and goals.")`,
+                click A call showInfo("User Interaction Framework", "Focus on how users interact with the underlying structure of the product. Consider their mental models, task flows, and expectations for product functionality.")
+                click B call showInfo("User Page Perception", "Analyze how users perceive and interact with different page layouts. Ensure layouts align with user expectations and support efficient task completion.")
+                click C call showInfo("User Navigation Patterns", "Examine how users move through the product to find information or complete tasks. Optimize navigation based on user behavior, preferences, and mental models.")
+                click D call showInfo("User Interface Interaction", "Study how users interact with various interface elements. Design intuitive interfaces that minimize cognitive load and enhance user efficiency.")
+                click E call showInfo("User Content Expectations", "Understand users expectations for content placement and hierarchy. Arrange elements to match users mental models and prioritize information they find most valuable.")
+                click F call showInfo("User Menu Interaction", "Analyze how users interact with and understand navigation menus. Design menu structures that align with users mental categorizations and task priorities.")
+                click G call showInfo("User Form Experience", "Evaluate users experience when interacting with forms. Optimize form design to reduce user effort, minimize errors, and streamline data input processes.")
+                click H call showInfo("User Information Discovery", "Assess how users uncover and process information over time. Implement progressive disclosure techniques that match users learning curves and information needs.")
+                click I call showInfo("User Element Association", "Examine how users group and associate different interface elements. Apply visual grouping principles that align with users natural tendency to categorize information.")
+                click J call showInfo("User Conceptual Models", "Understand the mental models and metaphors users apply when interacting with the product. Use familiar concepts to help users quickly grasp product functionality.")
+                click K call showInfo("User Information Comprehension", "Analyze how users interpret and understand complex information. Present data in formats that enhance comprehension and support users decision-making processes.")
+
+                style A fill:#f9f,stroke:#333,stroke-width:2px
+                
+                `,
             
 
                 Y3: `
             flowchart TD
-                A(Decision Making) --> B(Solution Structure)
-                A --> C(Usage Patterns)
-                B --> D(Solution Overview)
-                B --> E(Information Layout)
-                C --> F(Task Completion)
-                C --> G(Support and Guidance)
-                B --> H(Navigation Options)
-                C --> I(Familiarity)
-                C --> J(Ease of Learning)
-                C --> K(Discoverability)
+                A(User Mental Model) --> B(User Information Navigation)
+                A --> C(User Interaction Patterns)
+                B --> D(User Product Understanding)
+                B --> E(User Content Access)
+                C --> F(User Task Completion)
+                C --> G(User System Communication)
+                B --> H(User Navigation Preferences)
+                C --> I(User Expectation Alignment)
+                C --> J(User Learning Curve)
+                C --> K(User Discovery Process)
 
-                click A call showInfo("Decision Making", "At this stage, you're evaluating the structure and usability of potential solutions to make an informed decision about which one best meets your needs.")
-                click B call showInfo("Solution Structure", "Examine how information and features are organized within each solution. Consider if the structure aligns with your way of thinking and working.")
-                click C call showInfo("Usage Patterns", "Evaluate how you would interact with each solution. Think about your preferred ways of working and whether the solution supports these patterns.")
-                click D call showInfo("Solution Overview", "Look for a clear overview or map of what the solution offers. This helps you understand the scope and capabilities at a glance.")
-                click E call showInfo("Information Layout", "Assess how information is presented and organized. Consider if it's easy to find what you need and if the layout makes sense to you.")
-                click F call showInfo("Task Completion", "Imagine how you would complete your most important tasks with each solution. Look for streamlined processes that align with your workflow.")
-                click G call showInfo("Support and Guidance", "Evaluate the help and support options available. Consider if there are clear instructions, tooltips, or guidance when you need assistance.")
-                click H call showInfo("Navigation Options", "Explore how you move through the solution. Look for intuitive navigation that allows you to easily find and access different features or information.")
-                click I call showInfo("Familiarity", "Consider how familiar the solution feels. Look for interfaces or processes that are similar to tools you already know and like.")
-                click J call showInfo("Ease of Learning", "Assess how quickly you think you could learn to use the solution effectively. Look for intuitive designs that don't require extensive training.")
-                click K call showInfo("Discoverability", "Evaluate how easy it is to discover features and information. Consider if important elements are clearly visible or if they're hidden in menus.")
+                click A call showInfo("User Mental Model", "Focus on understanding and aligning with users conceptual understanding of the product. Consider their expectations, prior experiences, and mental representations of similar systems.")
+                click B call showInfo("User Information Navigation", "Analyze how users search for and navigate through information. Design information structures that match users mental models and support efficient information retrieval.")
+                click C call showInfo("User Interaction Patterns", "Examine how users naturally interact with the product and its features. Develop interaction designs that feel intuitive and align with users behavioral patterns.")
+                click D call showInfo("User Product Understanding", "Assess how users perceive the overall structure of the product. Create clear hierarchies and relationships between sections that users can easily comprehend and remember.")
+                click E call showInfo("User Content Access", "Evaluate how users access and engage with different types of content. Organize content in ways that align with users natural categorization tendencies and information needs.")
+                click F call showInfo("User Task Completion", "Analyze the steps users take to complete various tasks. Optimize user flows to minimize cognitive load and reduce the potential for errors during task execution.")
+                click G call showInfo("User System Communication", "Examine how users interpret and respond to system feedback. Design clear and timely feedback mechanisms that guide users and provide necessary information at each interaction point.")
+                click H call showInfo("User Navigation Preferences", "Understand users preferred navigation methods for different contexts. Implement flexible navigation structures that accommodate various user preferences and device types.")
+                click I call showInfo("User Expectation Alignment", "Assess how well the products structure aligns with user expectations. Ensure consistency across the product to meet users anticipated patterns and behaviors.")
+                click J call showInfo("User Learning Curve", "Analyze how quickly and easily users learn to navigate and use the product. Design interactions that leverage users existing knowledge and minimize the need for extensive learning.")
+                click K call showInfo("User Discovery Process", "Examine how users discover new features or content within the product. Implement discoverability techniques that encourage exploration while maintaining a sense of user control and orientation.")
+
+                style A fill:#f9f,stroke:#333,stroke-width:2px
             `,
 
             Y4: `
             flowchart TD
-                A(Onboarding and First Use) --> B(Initial Impressions)
-                A --> C(Navigation Experience)
-                A --> D(Interface Usability)
-                B --> E(Layout Familiarity)
-                C --> F(Menu Clarity)
-                D --> G(Data Input Ease)
-                A --> H(Information Revelation)
-                A --> I(Logical Organization)
-                A --> J(Intuitive Concepts)
-                A --> K(Data Presentation)
+                A(User Needs and Expectations) --> B(User Functionality Requirements)
+                A --> C(User Content Needs)
+                B --> D(User Feature Priorities)
+                D --> D1(User Essential Features)
+                D --> D2(User Desired Features)
+                B --> E(User Technical Expectations)
+                C --> F(User Content Evaluation)
+                C --> G(User Content Engagement)
+                A --> H(User Adaptation to Changes)
+                A --> I(User Value Propositions)
+                A --> J(User Scenarios)
 
-                click A call showInfo("Onboarding and First Use", "This stage represents your initial experience with the chosen solution. It's about how easily you can start using the product and accomplish your first tasks.")
-                click B call showInfo("Initial Impressions", "Your first reactions to the solution's appearance and layout. Consider if it looks professional, user-friendly, and aligned with your expectations.")
-                click C call showInfo("Navigation Experience", "How easily you can move through different parts of the solution. Evaluate if you can find what you need without confusion or frustration.")
-                click D call showInfo("Interface Usability", "Your experience interacting with the solution's interface. Assess if controls are intuitive and if information is presented in a clear, understandable way.")
-                click E call showInfo("Layout Familiarity", "How comfortable you feel with the arrangement of elements. Consider if the layout is similar to other tools you've used and if it makes logical sense to you.")
-                click F call showInfo("Menu Clarity", "Your ability to understand and use the navigation menus. Evaluate if menu items are clearly labeled and logically organized.")
-                click G call showInfo("Data Input Ease", "Your experience entering information into the system. Consider if forms are easy to fill out and if the system provides helpful guidance or validation.")
-                click H call showInfo("Information Revelation", "How the solution introduces new information or features to you. Assess if you're overwhelmed with details or if information is presented at a comfortable pace.")
-                click I call showInfo("Logical Organization", "Your perception of how elements are grouped within the interface. Consider if related items are near each other and if the organization makes sense to you.")
-                click J call showInfo("Intuitive Concepts", "Your ability to understand the solution's concepts and features quickly. Evaluate if the solution uses familiar ideas or explains new ones clearly.")
-                click K call showInfo("Data Presentation", "How information is displayed to you. Consider if data is presented in a clear, understandable format and if it's easy to interpret and use.")
-                        
+                click A call showInfo("User Needs and Expectations", "Focus on understanding and addressing the core needs and expectations of users. Consider both explicit and implicit user requirements to define the products scope.")
+                click B call showInfo("User Functionality Requirements", "Analyze the specific functions and capabilities users expect from the product. Ensure all features directly contribute to solving user problems or enhancing their experience.")
+                click C call showInfo("User Content Needs", "Examine the types and depth of content users require to achieve their goals. Consider various content formats users prefer video, images, text, audio based on their context and needs.")
+                click D call showInfo("User Feature Priorities", "Assess which features users consider most important or valuable. Prioritize features based on user needs, frequency of use, and potential impact on user satisfaction.")
+                click D1 call showInfo("User Essential Features", "Identify the core features users absolutely need to accomplish their primary tasks. These are nonnegotiable elements that define the products main value proposition for users.")
+                click D2 call showInfo("User Desired Features", "Recognize additional features that would enhance user experience but arent critical. These features can differentiate the product and provide extra value to users.")
+                click E call showInfo("User Technical Expectations", "Understand users expectations regarding the products performance, reliability, and compatibility. Consider factors like load times, device support, and integrations users might need.")
+                click F call showInfo("User Content Evaluation", "Analyze how users perceive and value existing content. Identify gaps in content that users need to fully utilize the product or achieve their goals.")
+                click G call showInfo("User Content Engagement", "Examine how users interact with and consume different types of content. Plan content delivery methods that align with users preferences and consumption habits.")
+                click H call showInfo("User Adaptation to Changes", "Consider users ability and willingness to adapt to new features or changes. Plan for incremental updates that allow users to gradually adapt to new functionalities.")
+                click I call showInfo("User Value Propositions", "Evaluate the balance between different user needs and expectations. Prioritize features and content that offer the highest value to users while aligning with business goals.")
+                click J call showInfo("User Scenarios", "Develop detailed scenarios that illustrate how different user types interact with the product. Use these scenarios to validate the scope and ensure it meets diverse user needs.")
+
+                style A fill:#f9f,stroke:#333,stroke-width:2px     
             `,
 
             Y5: `
             flowchart TD
-                A(Regular Use and Mastery) --> B(Visual Appeal)
-                A --> C(Consistent Experience)
-                B --> D(Color Comfort)
-                B --> E(Text Readability)
-                B --> F(Visual Cues)
-                C --> G(Familiar Patterns)
-                C --> H(Brand Recognition)
-                A --> I(Intuitive Interactions)
-                A --> J(Information Prioritization)
-                A --> K(Multi-Device Usage)
+                A["<div style='font-size:2rem;'>User-Centric Strategy</div>"] --> B["<div style='font-size:2rem;'>User Aspirations</div>"]
+                A --> C["<div style='font-size:2rem;'>User-Business Alignment</div>"]
 
-                click A call showInfo("Regular Use and Mastery", "This stage represents your ongoing experience with the solution as you become more proficient. It's about how the solution supports your regular tasks and helps you master its features.")
-                click B call showInfo("Visual Appeal", "Your overall impression of the solution's appearance. Consider if the visuals are pleasing, professional, and enhance your user experience.")
-                click C call showInfo("Consistent Experience", "The uniformity of your experience across different parts of the solution. Evaluate if the design feels cohesive and predictable.")
-                click D call showInfo("Color Comfort", "Your comfort with the color scheme used. Assess if the colors are easy on your eyes, convey the right mood, and help you understand the interface.")
-                click E call showInfo("Text Readability", "Your ease in reading and understanding text within the solution. Consider if fonts are clear, sizes are appropriate, and text is well-formatted.")
-                click F call showInfo("Visual Cues", "Your understanding of images and icons used. Evaluate if these visual elements clearly communicate their purpose and help you navigate the solution.")
-                click G call showInfo("Familiar Patterns", "Your recognition of common design elements across the solution. Consider if recurring features behave consistently, making the solution easier to use over time.")
-                click H call showInfo("Brand Recognition", "Your ability to associate the solution with its brand. Assess if the design elements reinforce the brand identity and values.")
-                click I call showInfo("Intuitive Interactions", "Your ability to interact with the solution naturally. Consider if the visual design guides your actions and makes features easy to use without conscious effort.")
-                click J call showInfo("Information Prioritization", "Your ability to quickly find important information. Evaluate if the design helps you focus on what's most relevant for your tasks.")
-                click K call showInfo("Multi-Device Usage", "Your experience using the solution across different devices. Consider if the design adapts well to various screen sizes and maintains usability on all your devices.")
+                B --> D["<div style='font-size:2rem;'>User Insights</div>"]
+                D --> D1["<div style='font-size:2rem;'>User Feedback</div>"]
+                D --> D2["<div style='font-size:2rem;'>User Conversations</div>"]
+                D --> D3["<div style='font-size:2rem;'>User Behavior Analysis</div>"]
+                B --> E["<div style='font-size:2rem;'>User Archetypes</div>"]
+                E --> E1["<div style='font-size:2rem;'>User Characteristics</div>"]
+                E --> E2["<div style='font-size:2rem;'>User Motivations and Challenges</div>"]
+                E --> E3["<div style='font-size:2rem;'>User Interaction Patterns</div>"]
+                C --> F["<div style='font-size:2rem;'>User-Centric Objectives</div>"]
+                F --> F1["<div style='font-size:2rem;'>User Success Indicators</div>"]
+                F --> F2["<div style='font-size:2rem;'>User Adoption Milestones</div>"]
+                C --> G["<div style='font-size:2rem;'>User Satisfaction Metrics</div>"]
+                G --> G1["<div style='font-size:2rem;'>User Task Completion</div>"]
+                G --> G2["<div style='font-size:2rem;'>User Interaction Frequency</div>"]
+                G --> G3["<div style='font-size:2rem;'>User Experience Ratings</div>"]
+                A --> H["<div style='font-size:2rem;'>User Content Preferences</div>"]
+                A --> I["<div style='font-size:2rem;'>User Technology Comfort</div>"]
+                A --> J["<div style='font-size:2rem;'>User Alternative Solutions</div>"]
+                A --> K["<div style='font-size:2rem;'>User-Perceived Value</div>"]
+
+                click A call showInfo("User-Centric Strategy", "Focus on aligning the product's strategy with user needs, preferences, and behaviors. Ensure all strategic decisions are made with the user's best interests in mind.")
+                click B call showInfo("User Aspirations", "Identify and analyze the goals, dreams, and aspirations of your target users. Consider how the product can help users achieve these aspirations.")
+                click C call showInfo("User-Business Alignment", "Find the sweet spot where user needs and business objectives intersect. Ensure that meeting user needs drives business success.")
+                click D call showInfo("User Insights", "Gather deep insights about users through various research methods. Focus on understanding users in their natural contexts.")
+                click D1 call showInfo("User Feedback", "Collect and analyze direct feedback from users about their experiences, preferences, and pain points with the product or similar solutions.")
+                click D2 call showInfo("User Conversations", "Engage in open-ended discussions with users to uncover deeper motivations, expectations, and unmet needs.")
+                click D3 call showInfo("User Behavior Analysis", "Study how users interact with the product or similar solutions, identifying patterns, preferences, and potential areas for improvement.")
+                click E call showInfo("User Archetypes", "Create representative user archetypes based on real data, considering users' goals, challenges, behaviors, and contexts.")
+                click E1 call showInfo("User Characteristics", "Define key demographic and psychographic traits that distinguish different user groups.")
+                click E2 call showInfo("User Motivations and Challenges", "Identify the primary drivers and obstacles users face in achieving their goals.")
+                click E3 call showInfo("User Interaction Patterns", "Map out typical user journeys and interaction flows to understand how users engage with the product or similar solutions.")
+                click F call showInfo("User-Centric Objectives", "Set objectives that focus on improving users' lives or solving their problems. Create a roadmap that prioritizes user value.")
+                click F1 call showInfo("User Success Indicators", "Define measurable indicators that reflect how well the product helps users achieve their goals.")
+                click F2 call showInfo("User Adoption Milestones", "Establish key milestones for user adoption and engagement throughout the product lifecycle.")
+                click G call showInfo("User Satisfaction Metrics", "Define metrics that truly reflect user satisfaction and success, going beyond just business-oriented metrics.")
+                click G1 call showInfo("User Task Completion", "Measure how effectively and efficiently users can complete their intended tasks using the product.")
+                click G2 call showInfo("User Interaction Frequency", "Track how often users engage with the product and which features they use most frequently.")
+                click G3 call showInfo("User Experience Ratings", "Collect and analyze user ratings and reviews to gauge overall satisfaction and identify areas for improvement.")
+                click H call showInfo("User Content Preferences", "Understand what types of content users prefer and find most valuable. Consider cultural relevance and user context.")
+                click I call showInfo("User Technology Comfort", "Evaluate users' comfort levels with different technologies. Ensure the product meets users where they are technologically.")
+                click J call showInfo("User Alternative Solutions", "Analyze how users currently solve their problems without your product. Identify opportunities to provide superior solutions.")
+                click K call showInfo("User-Perceived Value", "Clearly define what unique value users will get from the product. Ensure this value is easily recognizable and meaningful to users.")
+
+                style A fill:#f9f,stroke:#333,stroke-width:2px
             `,
 
             Y6: `
             flowchart TD
-                A(Continuous Feedback and Iteration) --> B(Experience Sharing)
-                A --> C(Feature Comparison)
-                A --> D(Usage Reflection)
-                B --> B1(Task Ease)
-                B --> B2(Satisfaction Expression)
-                C --> C1(Goal Achievement)
-                C --> C2(Feature Utilization)
-                D --> D1(Habit Formation)
-                D --> D2(Performance Perception)
+                A(User Experience Validation) --> B(User Interaction Observation)
+                A --> C(User Preference Comparison)
+                A --> D(User Behavior Analysis)
+                B --> B1(User Task Success)
+                B --> B2(User Sentiment Evaluation)
+                C --> C1(User Action Completion)
+                C --> C2(User Engagement Patterns)
+                D --> D1(User Journey Mapping)
+                D --> D2(User Experience Metrics)
 
-                click A call showInfo("Continuous Feedback and Iteration", "This stage represents your ongoing relationship with the solution, where you provide feedback and see improvements over time. It's about how the solution evolves to better meet your needs.")
-                click B call showInfo("Experience Sharing", "Your opportunity to share your experiences using the solution. This could involve participating in user studies, filling out surveys, or providing direct feedback.")
-                click C call showInfo("Feature Comparison", "Your evaluation of new or updated features. This involves comparing different versions or options within the solution to see which better meets your needs.")
-                click D call showInfo("Usage Reflection", "Your analysis of how you use the solution over time. This involves reflecting on your usage patterns and how the solution fits into your daily routine.")
-                click B1 call showInfo("Task Ease", "Your assessment of how easily you can complete tasks with the solution. Consider if certain tasks have become easier or if you still face challenges.")
-                click B2 call showInfo("Satisfaction Expression", "Your opportunity to express how satisfied you are with the solution. This could involve rating your experience or providing detailed feedback.")
-                click C1 call showInfo("Goal Achievement", "Your evaluation of how well the solution helps you achieve your goals. Consider if new features or changes have made it easier to accomplish what you need.")
-                click C2 call showInfo("Feature Utilization", "Your assessment of how much you use different features. Reflect on which aspects of the solution you use most and which you might be underutilizing.")
-                click D1 call showInfo("Habit Formation", "Your reflection on how the solution has become part of your routine. Consider how your usage patterns have evolved over time.")
-                click D2 call showInfo("Performance Perception", "Your perception of the solution's performance over time. Reflect on aspects like speed, reliability, and how they impact your experience.")
+                click A call showInfo("User Experience Validation", "Focus on understanding and validating the overall user experience. Gather insights directly from users to ensure the product meets their needs and expectations.")
+                click B call showInfo("User Interaction Observation", "Watch how users naturally interact with the product. Identify pain points, moments of delight, and areas where users expectations arent met.")
+                click C call showInfo("User Preference Comparison", "Present users with different options to understand their preferences. Gain insights into what design elements resonate most with users.")
+                click D call showInfo("User Behavior Analysis", "Examine patterns in how users interact with the product in their natural environment. Understand user behavior without direct observation.")
+                click B1 call showInfo("User Task Success", "Evaluate how easily and effectively users accomplish their goals. Identify obstacles that prevent users from completing tasks efficiently.")
+                click B2 call showInfo("User Sentiment Evaluation", "Gather users emotional responses and opinions about their experience. Understand the qualitative aspects of user satisfaction.")
+                click C1 call showInfo("User Action Completion", "Compare how different designs impact users ability to complete desired actions. Understand which designs best support user goals.")
+                click C2 call showInfo("User Engagement Patterns", "Analyze how different versions affect user interaction patterns. Understand which designs encourage more meaningful user engagement.")
+                click D1 call showInfo("User Journey Mapping", "Trace users paths through the product to understand their experience. Identify key touchpoints and potential drop-off points in the user journey.")
+                click D2 call showInfo("User Experience Metrics", "Measure aspects of the user experience that impact satisfaction and efficiency. Monitor factors like response times and error frequency from the users perspective.")
+
+                style A fill:#f9f,stroke:#333,stroke-width:2px
+            `,
+
+            Y7: `
+            flowchart TD
+                    A(User-Centric Product Development) --> B(User Research and Design)
+                    A --> C(User-Focused Implementation)
+                    A --> D(User Testing and Validation)
+                    B --> B1(User Experience Design)
+                    B --> B2(User Interface Design)
+                    C --> C1(User-Facing Features Development)
+                    C --> C2(User Data and Privacy Implementation)
+                    D --> D1(User Acceptance Testing)
+                    D --> D2(User Feedback Integration)
+                    A --> E(User-Driven Iteration)
+                    A --> F(User Performance Enhancement)
+                    A --> G(User Documentation)
+                    A --> H(User Onboarding Preparation)
+
+                    click A call showInfo("User-Centric Product Development", "A development approach that places user needs, preferences, and experiences at the core of every decision and process throughout the product lifecycle.")
+                    click B call showInfo("User Research and Design", "The stage where deep user research informs the design of the product, ensuring it aligns with user needs, behaviors, and preferences.")
+                    click C call showInfo("User-Focused Implementation", "The phase where user-centric designs are transformed into functional features, always keeping the user's perspective in mind.")
+                    click D call showInfo("User Testing and Validation", "Rigorous testing with actual users to ensure the product meets their needs, is intuitive, and provides value.")
+                    click B1 call showInfo("User Experience Design", "Crafting the overall user journey, focusing on user flows, information architecture, and interaction design to ensure an intuitive and satisfying user experience.")
+                    click B2 call showInfo("User Interface Design", "Creating visual elements that resonate with users, considering accessibility, cultural relevance, and user preferences in color schemes, layouts, and interactive elements.")
+                    click C1 call showInfo("User-Facing Features Development", "Building features with a focus on user interaction, ensuring they're intuitive, accessible, and aligned with user expectations and needs.")
+                    click C2 call showInfo("User Data and Privacy Implementation", "Developing backend systems with a strong emphasis on protecting user data, ensuring privacy, and providing users control over their information.")
+                    click D1 call showInfo("User Acceptance Testing", "Engaging real users in testing to validate that the product meets their needs, preferences, and expectations in real-world scenarios.")
+                    click D2 call showInfo("User Feedback Integration", "Systematically collecting and integrating user feedback into the development process, ensuring continuous alignment with user needs.")
+                    click E call showInfo("User-Driven Iteration", "Continuously refining the product based on user feedback, usage data, and evolving user needs, ensuring the product remains relevant and valuable to users.")
+                    click F call showInfo("User Performance Enhancement", "Optimizing the product's speed, responsiveness, and efficiency based on user expectations and real-world usage patterns.")
+                    click G call showInfo("User Documentation", "Creating user-friendly guides, FAQs, and help resources that assist users in maximizing the value they get from the product.")
+                    click H call showInfo("User Onboarding Preparation", "Designing and implementing a smooth onboarding process that quickly demonstrates the product's value to new users and guides them to successful adoption.")
+
+                    style A fill:#f9f,stroke:#333,stroke-width:2px
             `,
             
                 B: `
@@ -381,19 +522,28 @@ let currentMainChart = 'selector';
                 A --> J["<div style='font-size:2rem;'>Competitive Analysis</div>"]
                 A --> K["<div style='font-size:2rem;'>Value Proposition</div>"]
 
-                
-
+                click A call showInfo("Strategy Plane", "The foundational level of UX design that addresses the project's objectives and user needs.")
                 click B call showInfo("User Needs", "Identify and analyze the needs of your target users. Consider the audience culture - corporate, artistic, educational, etc. - and ensure content relevance.")
                 click C call showInfo("Business Objectives", "Define clear business goals such as increased brand awareness, ROI, and social currency. Consider the unique selling points and competitive advantages.")
                 click D call showInfo("User Research", "Conduct stakeholder interviews, competitor reviews, user interviews, and product audits if applicable.")
+                click D1 call showInfo("Surveys", "Quantitative research method to gather data from a large number of users.")
+                click D2 call showInfo("Interviews", "Qualitative research method to gain in-depth insights from individual users.")
+                click D3 call showInfo("Analytics Review", "Analysis of existing data to understand user behavior and patterns.")
                 click E call showInfo("Personas", "Create fictional characters representing user types, considering demographics, goals, pain points, and behaviors.")
+                click E1 call showInfo("Demographic Info", "Age, gender, occupation, and other relevant characteristics of the user persona.")
+                click E2 call showInfo("Goals and Pain Points", "What the user wants to achieve and what obstacles they face.")
+                click E3 call showInfo("Behaviors", "Typical actions, habits, and preferences of the user persona.")
                 click F call showInfo("Project Goals", "Set specific, measurable goals for the project. Create a roadmap that provides value for both users and the business.")
+                click F1 call showInfo("Define KPIs", "Establish Key Performance Indicators to measure project success.")
+                click F2 call showInfo("Set Timelines", "Create a schedule for project milestones and deliverables.")
                 click G call showInfo("Success Metrics", "Define metrics to measure project success, such as conversion rates, user engagement, and customer satisfaction.")
+                click G1 call showInfo("Conversion Rates", "Percentage of users who take a desired action.")
+                click G2 call showInfo("User Engagement", "Measures of how users interact with the product, such as time spent or features used.")
+                click G3 call showInfo("Customer Satisfaction", "Metrics indicating how well the product meets user expectations.")
                 click H call showInfo("Content Considerations", "Ensure content is culturally appropriate and relevant. Consider how to track and catalog content intuitively.")
                 click I call showInfo("Technology Appropriateness", "Evaluate if the chosen technology is suitable for the target audience and project goals.")
                 click J call showInfo("Competitive Analysis", "Analyze competitors' strengths and weaknesses. Identify opportunities for differentiation.")
                 click K call showInfo("Value Proposition", "Clearly define what value the product will provide to users and how it differs from alternatives.")
-                
                 
             `,
             C: `
@@ -410,17 +560,18 @@ let currentMainChart = 'selector';
                 A --> I(Trade-offs)
                 A --> J(User Stories)
 
+                click A call showInfo("Scope Plane", "Defines what features and functions will be included in the product. It bridges the gap between strategy and structure.")
                 click B call showInfo("Functional Specifications", "Define the specific functions and capabilities of the product. Ensure all features align with the strategy.")
                 click C call showInfo("Content Requirements", "Outline the content needed to support user needs and business goals. Consider mixed content types: video, images, text, audio.")
                 click D call showInfo("Feature List", "Compile a list of all features, prioritized by importance and feasibility. Use the importance vs. viability matrix to decide what's in and what's out.")
+                click D1 call showInfo("Core Features", "Essential features that are crucial for the product's primary function and must be included in the initial release.")
+                click D2 call showInfo("Nice-to-have Features", "Additional features that enhance the product but are not critical for its core functionality. These may be considered for future releases.")
                 click E call showInfo("Technical Requirements", "Specify the technical needs to support the planned features, including non-functional requirements like security and scalability.")
                 click F call showInfo("Content Audit", "Review existing content and identify gaps. Ensure all content ideas are feasible given available resources.")
                 click G call showInfo("Content Strategy", "Plan for creating, delivering, and managing content. Consider format, purpose, and size of different content types.")
                 click H call showInfo("Agile Approach", "Adopt an agile methodology with sprints. Commit to small, bite-sized increments of development to minimize documentation and keep things simple.")
                 click I call showInfo("Trade-offs", "Make necessary trade-offs between business objectives and user needs. Remember that trade-offs are essential to strategy and create the need for choice.")
                 click J call showInfo("User Stories", "Create user stories to describe how users interact with the system. Include scenarios for different user types like recruiters, employers, and collaborators.")
-            
-               
                 `,
             D: `
             flowchart TD
@@ -516,6 +667,78 @@ let currentMainChart = 'selector';
                 click D1 call showInfo("User Behavior", "Analyze patterns in how users interact with the product. Use heat maps, user flows, and other analytics tools to gain insights.")
                 click D2 call showInfo("Performance Metrics", "Evaluate technical performance and its impact on UX. Monitor load times, error rates, and other technical factors affecting user experience.")
             `
+
+            ,
+
+            G: `
+            flowchart TD
+                A(Project Initiation) --> B(Problem Identification)
+                A --> C(Market Research)
+                A --> D(Idea Generation)
+                B --> B1(Pain Point Analysis)
+                B --> B2(Existing Solutions Review)
+                C --> C1(Target Market Definition)
+                C --> C2(Competitor Analysis)
+                D --> D1(Brainstorming Sessions)
+                D --> D2(Feasibility Assessment)
+                A --> E(Stakeholder Identification)
+                A --> F(Initial Resource Estimation)
+                A --> G(Preliminary Tech Stack Evaluation)
+                A --> H(MVP Definition)
+
+                click A call showInfo("Project Initiation", "The starting point of the product development process. This phase involves identifying the problem to solve, generating initial ideas, and setting the foundation for the project.")
+                click B call showInfo("Problem Identification", "Clearly define the problem that the product aims to solve. This involves understanding user pain points and market gaps.")
+                click C call showInfo("Market Research", "Conduct thorough research to understand the market landscape, potential users, and existing solutions.")
+                click D call showInfo("Idea Generation", "Brainstorm potential solutions to the identified problem. Encourage creative thinking and innovative approaches.")
+                click B1 call showInfo("Pain Point Analysis", "Identify and analyze the specific pain points or challenges that users face. This helps in ensuring the product addresses real user needs.")
+                click B2 call showInfo("Existing Solutions Review", "Examine current solutions in the market. Identify their strengths and weaknesses to inform your product strategy.")
+                click C1 call showInfo("Target Market Definition", "Clearly define the target market for the product. This includes identifying user demographics, behaviors, and needs.")
+                click C2 call showInfo("Competitor Analysis", "Analyze direct and indirect competitors. Understand their offerings, strengths, and weaknesses to identify opportunities for differentiation.")
+                click D1 call showInfo("Brainstorming Sessions", "Conduct structured brainstorming sessions to generate a wide range of potential solutions and features.")
+                click D2 call showInfo("Feasibility Assessment", "Evaluate the technical and economic feasibility of proposed ideas. Consider factors like development time, costs, and potential ROI.")
+                click E call showInfo("Stakeholder Identification", "Identify key stakeholders involved in the project. This includes team members, investors, potential users, and other relevant parties.")
+                click F call showInfo("Initial Resource Estimation", "Make preliminary estimates of the resources required for the project. This includes time, budget, and personnel needs.")
+                click G call showInfo("Preliminary Tech Stack Evaluation", "Begin considering potential technologies and frameworks that could be used to develop the product.")
+                click H call showInfo("MVP Definition", "Define the Minimum Viable Product MVP. Identify the core features that will allow for rapid development and user testing.")
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+            `
+
+            ,
+
+            I: `
+            flowchart TD
+                A(Product Development) --> B(Design Phase)
+                A --> C(Implementation Phase)
+                A --> D(Testing Phase)
+                B --> B1(UX Design)
+                B --> B2(UI Design)
+                C --> C1(Frontend Development)
+                C --> C2(Backend Development)
+                D --> D1(Unit Testing)
+                D --> D2(Integration Testing)
+                A --> E(Iteration and Refinement)
+                A --> F(Performance Optimization)
+                A --> G(Documentation)
+                A --> H(Deployment Preparation)
+
+                click A call showInfo("Product Development", "The core phase of the product arc where the actual building of the product takes place. This involves translating ideas and plans into a functional product.")
+                click B call showInfo("Design Phase", "The stage where the products look, feel, and functionality are planned out in detail. This sets the blueprint for the implementation phase.")
+                click C call showInfo("Implementation Phase", "The actual coding and building of the product. This is where the designs are turned into functional software.")
+                click D call showInfo("Testing Phase", "Rigorous testing of the product to ensure it meets quality standards and functions as intended. This phase is crucial for identifying and fixing issues.")
+                click B1 call showInfo("UX Design", "Focusing on the overall user experience, including user flows, information architecture, and interaction design. This ensures the product is intuitive and meets user needs.")
+                click B2 call showInfo("UI Design", "Creating the visual elements of the product, including layouts, color schemes, and interactive elements. This brings the UX design to life visually.")
+                click C1 call showInfo("Frontend Development", "Building the user-facing parts of the product. This involves implementing the UI designs and ensuring smooth user interactions.")
+                click C2 call showInfo("Backend Development", "Developing the server-side logic, databases, and APIs that power the product. This handles data processing, storage, and business logic.")
+                click D1 call showInfo("Unit Testing", "Testing individual components or functions of the product in isolation. This ensures each part of the product works correctly on its own.")
+                click D2 call showInfo("Integration Testing", "Testing how different parts of the product work together. This ensures the product functions correctly as a whole.")
+                click E call showInfo("Iteration and Refinement", "Continuously improving the product based on testing results and feedback. This involves making adjustments to enhance functionality and user experience.")
+                click F call showInfo("Performance Optimization", "Improving the speed, responsiveness, and efficiency of the product. This ensures a smooth user experience and efficient resource use.")
+                click G call showInfo("Documentation", "Creating comprehensive documentation for the product, including user manuals, API documentation, and internal development docs.")
+                click H call showInfo("Deployment Preparation", "Preparing the product for launch, including setting up deployment environments, configuring servers, and planning rollout strategies.")
+
+                style A fill:#f9f,stroke:#333,stroke-width:2px
+            `
         
         };
 
@@ -537,7 +760,7 @@ window.clickPlane = function(planeId) {
         currentMainChart = 'user';
     }
     renderChart(planeCharts[planeId]);
-    document.getElementById('backButton').style.display = 'none';
+    document.getElementById('backButton').style.display = 'block';
     document.getElementById('infoPanel').style.display = 'none';
 };
 
