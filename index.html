@@ -81,14 +81,14 @@ let currentMainChart = 'selector';
                 C --> D(Structure Plane)
                 C -.-> D(Structure Plane)
                 D --> E(Skeleton Plane)
-                D -.-> H
+                D <-.-> H
                 D -.-> E
                 E --> F(Surface Plane)
                 E -.-> F
-                E -.-> H
+                E <-.-> H
                 F --> G(Product Development)
                 F -.-> G
-                F -.-> H
+                F <-.-> H
                 
                 G --> H(User Testing)
                 H -->|Iterate| B
@@ -159,8 +159,14 @@ let currentMainChart = 'selector';
                 B --> C(Skeleton Plane)
                 C --> D(Structure Plane)
                 D --> E(Scope Plane)
+                D -.-> E
+                D <-.-> H
                 E --> F(Strategy Plane)
+                E -.-> F
+                E <-.-> H
                 F --> G(Product Development)
+                F -.-> G
+                F <-.-> H
                 G --> H(User Feedback)
                 H -->|Iterate| B
 
